@@ -10,9 +10,9 @@ export const ContactSection = () => {
   return (
     <Section id="contact">
       <h2 className="text-4xl md:text-5xl font-bold text-center">
-        Get in <span className="text-primary"> touch</span>
+        &lt;Get in <span className="text-primary">touch /&gt;</span>
       </h2>
-      <p className="mt-8 font-medium text-foreground/80 max-w-2xl mx-auto text-center">
+      <p className="mt-4 font-medium text-foreground/75 max-w-2xl mx-auto text-center">
         Hai un progetto in mente o vuoi collaborare? Sentiti libero di
         contattarmi per discuterne, sono sempre aperto a nuove opportunita!
       </p>

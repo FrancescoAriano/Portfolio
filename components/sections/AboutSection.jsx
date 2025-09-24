@@ -16,7 +16,7 @@ export const AboutSection = () => {
   return (
     <Section id="about">
       <h2 className="text-4xl md:text-5xl font-bold text-center">
-        About <span className="text-primary">me</span>
+        &lt;About <span className="text-primary">me /&gt;</span>
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
         <div className="md:col-span-1 overflow-hidden rounded-2xl shadow-lg">

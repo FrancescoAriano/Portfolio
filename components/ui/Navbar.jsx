@@ -22,7 +22,7 @@ export const Navbar = () => {
 
       const scrollTop = window.scrollY;
       const windowHeight = window.innerHeight;
-      const navOffset = 100; // Offset per la navbar
+      const navOffset = 64; // Offset per la navbar
 
       let activeSection = "hero"; // Default
       let maxVisibleArea = 0;
@@ -56,7 +56,7 @@ export const Navbar = () => {
     };
 
     const handleResize = () => {
-      if (window.innerWidth >= 768) setIsMenuOpen(false);
+      if (window.innerWidth >= 1024) setIsMenuOpen(false);
 
       // Ricalcola dopo resize
       clearTimeout(resizeTimeout);
@@ -101,7 +101,7 @@ export const Navbar = () => {
           <div
             key={key}
             className={`flex items-center ${
-              isMobileView ? "flex-col space-y-8" : "space-x-4"
+              isMobileView ? "flex-col space-y-8" : ""
             }`}
           >
             <a
@@ -113,12 +113,12 @@ export const Navbar = () => {
             >
               <span className="text-primary-foreground">{item.label}</span>
             </a>
-            {/* Theme toggle */}
-            <ThemeToggle />
+            {/* Theme toggle solo su mobile nel menu */}
+            {isMobileView && <ThemeToggle />}
           </div>
         );
       }
-      const className = `${baseTextSize} font-medium ${
+      const className = `${baseTextSize} font-semibold ${
         activeSection === item.id ? "text-primary" : ""
       }`;
       return (
@@ -137,25 +137,46 @@ export const Navbar = () => {
   return (
     <nav className="fixed w-full z-40">
       <div
-        className={`${
-          isScrolled && !isMenuOpen
-            ? "py-3 bg-background/80 backdrop-blur-md shadow-sm"
-            : "py-5"
-        } transition-all duration-300`}
+        className={`transition-all duration-400 py-3 ${
+          isScrolled && !isMenuOpen ? "bg-background/80" : ""
+        }`}
       >
         <div className="container flex items-center justify-between">
           <a
-            className="text-xl font-bold"
+            className="text-xl font-bold flex items-center"
             onClick={() => scrollToSection("hero")}
           >
-            <span className="text-primary">Francesco</span> <span>Ariano</span>
+            <span className="text-primary">&lt;Francesco</span>
+            <span
+              className={`transition-all duration-500 overflow-hidden whitespace-nowrap ${
+                isScrolled ? "w-0 opacity-0 ml-0" : "w-16 opacity-100 ml-1"
+              }`}
+            >
+              Ariano
+            </span>
+            <span className="text-primary ml-2">/&gt;</span>
           </a>
-          <div className="hidden md:flex space-x-8 items-center">
-            {renderNavItems(false)}
+          <div className="hidden lg:flex relative">
+            {/* ThemeToggle fisso che rimane nella sua posizione */}
+            <div
+              className={`absolute right-0 top-1/2 -translate-y-1/2 transition-opacity duration-400 z-10 ${
+                !isScrolled ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <ThemeToggle />
+            </div>
+            {/* Container dei nav items che si sposta verso sinistra */}
+            <div
+              className={`flex space-x-8 items-center transition-transform duration-400 z-20 ${
+                !isScrolled ? "-translate-x-16" : "translate-x-0"
+              }`}
+            >
+              {renderNavItems(false)}
+            </div>
           </div>
           <button
             onClick={() => setIsMenuOpen((prev) => !prev)}
-            className="md:hidden z-50 transition-transform duration-300 hover:scale-110"
+            className="lg:hidden z-50 transition-transform duration-300 hover:scale-110"
             aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
           >
             <div
@@ -169,7 +190,7 @@ export const Navbar = () => {
         </div>
       </div>
       <div
-        className={`fixed inset-0 bg-background flex flex-col items-center justify-center transition-all duration-300 md:hidden z-30 ${
+        className={`h-screen fixed inset-0 bg-background flex flex-col items-center justify-center transition-all duration-300 lg:hidden z-30 ${
           isMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"

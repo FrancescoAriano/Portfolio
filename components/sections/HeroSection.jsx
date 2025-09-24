@@ -7,7 +7,7 @@ export const HeroSection = () => {
   return (
     <section
       id="hero"
-      className="min-h-screen flex flex-col items-center justify-center max-w-5xl mx-auto px-4 py-20 mb-32"
+      className="min-h-screen flex flex-col items-center justify-center max-w-5xl mx-auto px-4 py-16 mb-32"
     >
       <div className="container mx-auto text-center">
         <div className="space-y-6">
@@ -27,19 +27,19 @@ export const HeroSection = () => {
             who loves crafting clean, scalable web applications using the latest
             technology.
           </p>
-          <div className="pt-4 flex items-center gap-4 justify-center">
+          <div className="flex md:flex-row flex-col items-center gap-4 justify-center md:pt-4">
             <a
               href="/cv/Francesco-Ariano-CV.pdf"
               download="Francesco-Ariano-CV.pdf"
               className="button px-6 bg-primary text-primary-foreground font-bold"
             >
-              Download CV
+              &lt;Download CV /&gt;
             </a>
             <a
               onClick={() => scrollToSection("projects")}
               className="button px-6 border border-primary text-primary font-bold"
             >
-              My work
+              &lt;View work /&gt;
             </a>
           </div>
         </div>

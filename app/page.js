@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "../components/ui/Navbar";
 import { LoadingScreen } from "../components/ui/LoadingScreen";
 import { HeroSection } from "../components/sections/HeroSection";
@@ -12,6 +12,15 @@ import { Footer } from "../components/ui/Footer";
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const html = document.documentElement;
+    if (isLoaded) html.style.scrollbarGutter = "stable";
+
+    return () => {
+      html.style.scrollbarGutter = "";
+    };
+  }, [isLoaded]);
 
   return (
     <div>
@@ -25,7 +34,7 @@ export default function Home() {
       <div
         className={`${
           isLoaded ? "opacity-100" : "opacity-0"
-        } transition-opacity duration-500`}
+        } transition-opacity duration-1000`}
       >
         <Navbar />
         <main className={`${isLoaded ? "block" : "hidden"}`}>

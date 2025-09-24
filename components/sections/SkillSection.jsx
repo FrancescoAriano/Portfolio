@@ -45,7 +45,7 @@ export const SkillSection = () => {
   return (
     <Section id="skills">
       <h2 className="text-4xl md:text-5xl font-bold text-center">
-        My <span className="text-primary">skills</span>
+        &lt;My <span className="text-primary">skills /&gt;</span>
       </h2>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-12 text-left">
         <div className="lg:col-span-2 flex flex-col gap-8">

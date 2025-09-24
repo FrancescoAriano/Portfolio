@@ -27,7 +27,7 @@ export const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="w-12 h-12 md:w-10 md:h-10 button relative bg-foreground hover:bg-primary"
+      className="w-12 h-12 lg:w-10 lg:h-10 button relative bg-foreground hover:bg-primary"
     >
       <div className="absolute inset-0 flex items-center justify-center rounded-full text-primary hover:text-primary-foreground">
         <div className="relative w-6 h-6 overflow-hidden">

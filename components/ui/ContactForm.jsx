@@ -34,7 +34,7 @@ export const ContactForm = () => {
 
   return (
     <div className="bg-card shadow-lg rounded-2xl p-8 order-1 lg:order-2">
-      <h3 className="text-2xl font-bold mb-6">Send a message</h3>
+      <h3 className="text-2xl font-bold mb-6 text-center">Send a message</h3>
       <form onSubmit={handleSubmit} className="space-y-4 text-left">
         <div>
           <label htmlFor="name" className="text-sm text-foreground/80 ml-1">
@@ -81,9 +81,8 @@ export const ContactForm = () => {
           className="w-full button px-6 bg-primary font-bold disabled:bg-primary/50 disabled:cursor-not-allowed"
         >
           <div className="text-primary-foreground flex items-center justify-center">
-            {" "}
-            {status === "loading" ? "Invio..." : "Submit"}
-            <Send className="ml-2" size={16} />
+            &lt;
+            {status === "loading" ? "Invio..." : "Submit"} /&gt;
           </div>
         </button>
 

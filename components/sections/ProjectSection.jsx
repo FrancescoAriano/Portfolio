@@ -1,4 +1,3 @@
-import { ArrowRight } from "lucide-react";
 import { projects } from "../../data/projects";
 import { ProjectCard } from "../ui/ProjectCard";
 import { Section } from "../ui/Section";
@@ -7,9 +6,9 @@ export const ProjectSection = () => {
   return (
     <Section id="projects">
       <h2 className="text-4xl md:text-5xl font-bold text-center">
-        Featured <span className="text-primary">projects</span>
+        &lt;Featured <span className="text-primary">projects /&gt;</span>
       </h2>
-      <p className="mt-8 font-medium text-foreground/80 max-w-2xl mx-auto text-center">
+      <p className="mt-4 font-medium text-foreground/75 max-w-2xl mx-auto text-center">
         Questi sono alcuni dei miei progetti più recenti. Ognuno di questi è
         stato oggetto di uno studio approfondito su tutti i dettagli, cercando
         di ottimizzare prestazioni e UX
@@ -26,7 +25,7 @@ export const ProjectSection = () => {
           rel="noopener noreferrer"
           className="mt-12 flex items-center justify-center button px-6 bg-primary text-primary-foreground font-bold"
         >
-          Check my Github <ArrowRight className="ml-2" size={18} />
+          &lt;Check Github /&gt;
         </a>
       </div>
     </Section>
