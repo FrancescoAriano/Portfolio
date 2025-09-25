@@ -69,7 +69,7 @@ export const ContactForm = () => {
           <textarea
             id="message"
             name="message"
-            className="mt-2 w-full px-4 py-2 shadow-lg rounded-2xl border border-foreground/5 bg-background focus:outline-none focus:border-foreground/25 transition-colors duration-300"
+            className="min-h-32 lg:min-h-16 mt-2 w-full px-4 py-2 shadow-lg rounded-2xl border border-foreground/5 bg-background focus:outline-none focus:border-foreground/25 transition-colors duration-300"
             placeholder="Hello, I'd like to talk about..."
             required
           ></textarea>

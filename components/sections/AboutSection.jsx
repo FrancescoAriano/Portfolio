@@ -49,8 +49,7 @@ export const AboutSection = () => {
           <p className="mb-4 font-medium ">
             Mi piace affrontare sfide tecniche complesse e trasformare idee
             creative in soluzioni digitali funzionali. Quando non sto
-            programmando, mi dedico alla lettura, fotografia e a lunghe
-            escursioni nella natura.
+            programmando, mi dedico alla fotografia e all'allenamento.
           </p>
         </div>
       </div>
@@ -68,7 +67,7 @@ export const AboutSection = () => {
           <h3>Istruzione</h3>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-          <div>
+          <div className="order-2 md:order-1">
             <EducationItem
               year="2021"
               title="Diploma di Liceo Scientifico"
@@ -82,12 +81,12 @@ export const AboutSection = () => {
               description="Formazione completa in programmazione, algoritmi, strutture dati e metodologie di sviluppo software con focus su tecnologie web e sistemi distribuiti."
             />
           </div>
-          <div>
+          <div className="order-1 md:order-2">
             <EducationItem
               year="2019"
               title="ECDL - Patente Europea del Computer"
               institution="AICA (Associazione Italiana per l'Informatica e il Calcolo Automatico)"
-              description="Certificazione delle competenze digitali di base: utilizzo del computer, elaborazione testi, fogli di calcolo, database, presentazioni, internet e comunicazione."
+              description="Certificazione delle competenze digitali di base: utilizzo del computer, elaborazione testi, internet e comunicazione."
             />
             <EducationItem
               year="2021"

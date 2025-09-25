@@ -14,7 +14,7 @@ export const ContactSection = () => {
       </h2>
       <p className="mt-4 font-medium text-foreground/75 max-w-2xl mx-auto text-center">
         Hai un progetto in mente o vuoi collaborare? Sentiti libero di
-        contattarmi per discuterne, sono sempre aperto a nuove opportunita!
+        contattarmi per discuterne, sono sempre aperto a nuove opportunità!
       </p>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
         <div className="space-y-8 text-left order-2 lg:order-1">

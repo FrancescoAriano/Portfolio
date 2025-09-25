@@ -10,6 +10,7 @@ export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const [scrollPosition, setScrollPosition] = useState(0);
 
   useEffect(() => {
     let scrollTimeout;
@@ -63,8 +64,33 @@ export const Navbar = () => {
       resizeTimeout = setTimeout(getActiveSection, 100);
     };
 
-    // Gestione overflow body per menu mobile
-    document.body.style.overflow = isMenuOpen ? "hidden" : "unset";
+    // Gestione overflow body e html per menu mobile
+    // Su dispositivi mobili, specialmente iOS Safari, è necessario
+    // bloccare lo scroll sia su body che su html e usare position: fixed
+    if (isMenuOpen) {
+      // Salva la posizione corrente dello scroll
+      const currentScrollY = window.scrollY;
+      setScrollPosition(currentScrollY);
+
+      document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${currentScrollY}px`;
+      document.body.style.width = "100%";
+      document.body.style.height = "100%";
+    } else {
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      document.body.style.height = "";
+
+      // Ripristina la posizione dello scroll
+      if (scrollPosition > 0) {
+        window.scrollTo(0, scrollPosition);
+      }
+    }
 
     // Initial check
     getActiveSection();
@@ -76,7 +102,13 @@ export const Navbar = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
-      document.body.style.overflow = "unset";
+      // Pulizia completa di tutti gli stili applicati al body e html
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.width = "";
+      document.body.style.height = "";
       clearTimeout(scrollTimeout);
       clearTimeout(resizeTimeout);
     };
@@ -119,7 +151,7 @@ export const Navbar = () => {
         );
       }
       const className = `${baseTextSize} font-semibold ${
-        activeSection === item.id ? "text-primary" : ""
+        activeSection === item.id ? "text-primary" : "text-foreground"
       }`;
       return (
         <div
@@ -159,7 +191,7 @@ export const Navbar = () => {
           <div className="hidden lg:flex relative">
             {/* ThemeToggle fisso che rimane nella sua posizione */}
             <div
-              className={`absolute right-0 top-1/2 -translate-y-1/2 transition-opacity duration-400 z-10 ${
+              className={`absolute right-0 top-1/2 -translate-y-1/2 transition-opacity duration-500 z-10 ${
                 !isScrolled ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -167,7 +199,7 @@ export const Navbar = () => {
             </div>
             {/* Container dei nav items che si sposta verso sinistra */}
             <div
-              className={`flex space-x-8 items-center transition-transform duration-400 z-20 ${
+              className={`flex space-x-8 items-center transition-transform duration-500 z-20 ${
                 !isScrolled ? "-translate-x-16" : "translate-x-0"
               }`}
             >
@@ -176,7 +208,7 @@ export const Navbar = () => {
           </div>
           <button
             onClick={() => setIsMenuOpen((prev) => !prev)}
-            className="lg:hidden z-50 transition-transform duration-300 hover:scale-110"
+            className="lg:hidden z-50 transition-transform duration-300 hover:scale-110 cursor-pointer"
             aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
           >
             <div
@@ -190,13 +222,13 @@ export const Navbar = () => {
         </div>
       </div>
       <div
-        className={`h-screen fixed inset-0 bg-background flex flex-col items-center justify-center transition-all duration-300 lg:hidden z-30 ${
+        className={`fixed inset-0 bg-background transition-all duration-300 lg:hidden z-30 overflow-auto ${
           isMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="flex flex-col items-center space-y-8 py-16">
+        <div className="min-h-dvh flex flex-col items-center justify-center space-y-8 py-8">
           {renderNavItems(true)}
         </div>
       </div>
