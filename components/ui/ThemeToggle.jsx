@@ -14,7 +14,7 @@ export const ThemeToggle = () => {
 
   if (!mounted) {
     return (
-      <div className="w-12 h-12 md:w-10 md:h-10 button px-2 rounded-full bg-foreground"></div>
+      <div className="w-14 h-14 lg:w-9 lg:h-9 button relative bg-foreground rounded-full"></div>
     );
   }
 
@@ -27,7 +27,7 @@ export const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="w-12 h-12 lg:w-10 lg:h-10 button relative bg-foreground hover:bg-primary"
+      className="w-14 h-14 lg:w-9 lg:h-9 button relative bg-foreground hover:bg-primary"
     >
       <div className="absolute inset-0 flex items-center justify-center rounded-full text-primary hover:text-primary-foreground">
         <div className="relative w-6 h-6 overflow-hidden">

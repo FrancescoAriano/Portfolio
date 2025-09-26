@@ -10,13 +10,14 @@
 
   --color-card: hsl(var(--card));
 
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-fade-in: fade-in 0.7s ease-out forwards;
-  --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
-  --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
-  --animate-fade-in-delay-3: fade-in 0.7s ease-out 0.6s forwards;
-  --animate-fade-in-delay-4: fade-in 0.7s ease-out 0.8s forwards;
-  --animate-fade-in-delay-5: fade-in 0.7s ease-out 1s forwards;
+  --animate-float: float 5s ease-in-out infinite;
+  --animate-fade-in: fade-in 1s ease-out forwards;
+  --animate-fade-in-delay-1: fade-in 1s ease-out 0.2s forwards;
+  --animate-fade-in-delay-2: fade-in 1s ease-out 0.4s forwards;
+  --animate-fade-in-delay-3: fade-in 1s ease-out 0.6s forwards;
+  --animate-fade-in-delay-4: fade-in 1s ease-out 0.8s forwards;
+  --animate-fade-in-delay-5: fade-in 1s ease-out 1s forwards;
+  --animate-fade-in-delay-6: fade-in 1s ease-out 1.2s forwards;
 
   @keyframes float {
     0%,

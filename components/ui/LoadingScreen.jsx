@@ -8,6 +8,7 @@ export const LoadingScreen = ({ onComplete }) => {
   const [text, setText] = useState("");
   const [hasBeenHovered, setHasBeenHovered] = useState(false);
   const [isNearThemeToggle, setIsNearThemeToggle] = useState(false);
+  const [isExiting, setIsExiting] = useState(false);
   const trackerRef = useRef(null);
   const themeToggleRef = useRef(null);
   const lastPositionRef = useRef({ x: 0, y: 0 });
@@ -105,10 +106,20 @@ export const LoadingScreen = ({ onComplete }) => {
     };
   }, [isHovering, hasBeenHovered]);
 
+  const handleComplete = () => {
+    setIsExiting(true);
+    // Aspetta che l'animazione finisca prima di chiamare onComplete
+    setTimeout(() => {
+      onComplete();
+    }, 500); // Durata dell'animazione
+  };
+
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-background cursor-pointer"
-      onClick={onComplete}
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-background cursor-pointer transition-all duration-500 ${
+        isExiting ? "opacity-0 scale-95" : "opacity-100 scale-100"
+      }`}
+      onClick={handleComplete}
       onMouseEnter={() => {
         setIsHovering(true);
         setHasBeenHovered(true);
@@ -116,13 +127,19 @@ export const LoadingScreen = ({ onComplete }) => {
       onMouseLeave={() => setIsHovering(false)}
     >
       {/* Testo principale - Sempre al centro con effetto typing */}
-      <div className="text-2xl md:text-4xl font-mono font-bold text-center text-foreground">
+      <div
+        className={`text-2xl md:text-4xl font-mono font-bold text-center text-foreground transition-all duration-500 ${
+          isExiting
+            ? "opacity-0 transform translate-y-4"
+            : "opacity-100 transform translate-y-0"
+        }`}
+      >
         {text}
       </div>
       {/* Mouse tracker "Click me" - Dimensione fissa */}
       <div
         ref={trackerRef}
-        className={`fixed z-40 bg-foreground text-primary-foreground px-8 py-2 rounded-full font-mono font-bold text-sm whitespace-nowrap hidden lg:block transition-opacity duration-300 pointer-events-none ${
+        className={`fixed z-40 bg-foreground text-primary-foreground px-8 py-2 rounded-full font-mono font-bold text-sm whitespace-nowrap hidden lg:block pointer-events-none ${
           hasBeenHovered && !isNearThemeToggle ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -130,12 +147,22 @@ export const LoadingScreen = ({ onComplete }) => {
       </div>
 
       {/* ThemeToggle */}
-      <div className="absolute bottom-20 left-1/2 -translate-x-1/2 z-40 px-4 py-2 rounded-lg font-mono text-xs whitespace-nowrap text-foreground/80">
+      <div
+        className={`absolute bottom-24 left-1/2 -translate-x-1/2 z-40 px-4 py-2 rounded-lg font-mono text-xs whitespace-nowrap text-foreground/80 transition-all duration-500 ${
+          isExiting
+            ? "opacity-0 transform translate-y-4"
+            : "opacity-100 transform translate-y-0"
+        }`}
+      >
         Try to click on me!
       </div>
       <div
         ref={themeToggleRef}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-50 scale-80 lg:scale-120"
+        className={`absolute bottom-8 left-1/2 -translate-x-1/2 z-50 scale-80 lg:scale-120 transition-all duration-500 ${
+          isExiting
+            ? "opacity-0 transform translate-y-4"
+            : "opacity-100 transform translate-y-0"
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
         <ThemeToggle />

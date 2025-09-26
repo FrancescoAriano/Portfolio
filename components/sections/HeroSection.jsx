@@ -10,7 +10,7 @@ export const HeroSection = () => {
       className="min-h-svh flex flex-col justify-center max-w-5xl px-4 mx-auto mb-32"
     >
       <div className="container text-center space-y-4">
-        <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+        <h1 className="text-6xl lg:text-8xl font-bold tracking-tight">
           <span className="opacity-0 animate-fade-in-delay-1">Hi, I'm</span>
           <span className="text-glow text-primary opacity-0 animate-fade-in-delay-2">
             {" "}
@@ -18,7 +18,7 @@ export const HeroSection = () => {
           </span>
           <span className="opacity-0 animate-fade-in-delay-3"> Ariano</span>
         </h1>
-        <p className="text-lg md:text-2xl text-foreground/80 font-medium mx-auto opacity-0 animate-fade-in-delay-4">
+        <p className="text-xl md:text-2xl text-foreground/80 font-medium mx-auto opacity-0 animate-fade-in-delay-4">
           I'm a{" "}
           <span className="text-foreground font-bold">
             full-stack developer
@@ -26,17 +26,17 @@ export const HeroSection = () => {
           who loves crafting clean, scalable web applications using the latest
           technology.
         </p>
-        <div className="flex md:flex-row flex-col items-center gap-4 justify-center md:pt-4 opacity-0 animate-fade-in-delay-5">
+        <div className="flex md:flex-row flex-col items-center gap-4 justify-center md:pt-4">
           <a
             href="/cv/Francesco-Ariano-CV.pdf"
             download="Francesco-Ariano-CV.pdf"
-            className="button px-6 bg-primary text-primary-foreground font-bold"
+            className="button px-6 bg-primary text-primary-foreground font-bold opacity-0 animate-fade-in-delay-5"
           >
             &lt;Download CV /&gt;
           </a>
           <a
             onClick={() => scrollToSection("projects")}
-            className="button px-6 border border-primary text-primary font-bold"
+            className="button px-6 border border-primary text-primary font-bold opacity-0 animate-fade-in-delay-6"
           >
             &lt;View work /&gt;
           </a>
