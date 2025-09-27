@@ -1,10 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Send } from "lucide-react";
 
 export const ContactForm = () => {
-  const [status, setStatus] = useState(""); // '', 'loading', 'success', 'error'
+  const [status, setStatus] = useState("");
+
+  const handleInputChange = () => {
+    if (status !== "" && status !== "loading") {
+      setStatus("");
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,10 +30,16 @@ export const ContactForm = () => {
       }
 
       setStatus("success");
+      setTimeout(() => {
+        setStatus("");
+      }, 5000);
       e.target.reset();
     } catch (error) {
       console.error(error);
       setStatus("error");
+      setTimeout(() => {
+        setStatus("");
+      }, 8000);
     }
   };
 
@@ -44,6 +55,7 @@ export const ContactForm = () => {
             type="text"
             id="name"
             name="name"
+            onChange={handleInputChange}
             className="mt-2 w-full px-4 py-2 shadow-lg rounded-2xl border border-foreground/5 bg-background focus:outline-none focus:border-foreground/25 transition-colors duration-300"
             placeholder="Write your name..."
             required
@@ -57,6 +69,7 @@ export const ContactForm = () => {
             type="email"
             id="email"
             name="email"
+            onChange={handleInputChange}
             className="mt-2 w-full px-4 py-2 shadow-lg rounded-2xl border border-foreground/5 bg-background focus:outline-none focus:border-foreground/25 transition-colors duration-300"
             placeholder="Write your email..."
             required
@@ -69,6 +82,7 @@ export const ContactForm = () => {
           <textarea
             id="message"
             name="message"
+            onChange={handleInputChange}
             className="min-h-32 lg:min-h-16 mt-2 w-full px-4 py-2 shadow-lg rounded-2xl border border-foreground/5 bg-background focus:outline-none focus:border-foreground/25 transition-colors duration-300"
             placeholder="Hello, I'd like to talk about..."
             required
@@ -82,20 +96,14 @@ export const ContactForm = () => {
         >
           <div className="text-primary-foreground flex items-center justify-center">
             &lt;
-            {status === "loading" ? "Invio..." : "Submit"} /&gt;
+            {status === "success"
+              ? "Inviata!"
+              : status === "error"
+              ? "Errore!"
+              : "Invia"}{" "}
+            /&gt;
           </div>
         </button>
-
-        {status === "success" && (
-          <p className="text-green-500 text-center mt-4">
-            Messaggio inviato con successo!
-          </p>
-        )}
-        {status === "error" && (
-          <p className="text-red-500 text-center mt-4">
-            Errore. Riprova più tardi.
-          </p>
-        )}
       </form>
     </div>
   );
